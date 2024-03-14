@@ -21,6 +21,7 @@ def cypher(sentance, offset):
 
 
 
+
 while True:
     encode = input("Do you want to encode or decode? ")
     if encode == "encode":
