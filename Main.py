@@ -6,11 +6,11 @@ def cypher(sentence, offset):
     realwords = ""
     sentence = sentence.casefold()
     sentence = list(sentence)
-    for x in range(len(sentence)):
-        if sentence[x - 1] == ' ':
+    for p in range(len(sentence)):
+        if sentence[p - 1] == ' ':
             continue
         else:
-            sentence[x - 1] = alphabetsoup[alphabetsoup.index(sentence[x - 1]) + offset]
+            sentence[p - 1] = alphabetsoup[alphabetsoup.index(sentence[p - 1]) + offset]
     for y in range(len(sentence)):
         realwords += sentence[y - 1]
     realwords = list(realwords)
@@ -28,11 +28,11 @@ def decryptknown(sentence, offset):
     realwords = ""
     sentence = sentence.casefold()
     sentence = list(sentence)
-    for x in range(len(sentence)):
-        if sentence[x - 1] == ' ':
+    for p in range(len(sentence)):
+        if sentence[p - 1] == ' ':
             continue
         else:
-            sentence[x - 1] = alphabetsoup[alphabetsoup.index(sentence[x - 1]) - offset]
+            sentence[p - 1] = alphabetsoup[alphabetsoup.index(sentence[p - 1]) - offset]
     for y in range(len(sentence)):
         realwords += sentence[y - 1]
     realwords = list(realwords)
@@ -90,5 +90,3 @@ while True:
                 print(x)
     else:
         print("Unrecognised input")
-
-# test
