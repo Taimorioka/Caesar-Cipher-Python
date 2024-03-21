@@ -1,23 +1,37 @@
+# def cypher(sentence, offset):
+#     while offset > 26:
+#         offset -= 26
+#     alphabetsoup = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
+#                     "u", "v", "w", "x", "y", "z"]
+#     realwords = ""
+#     sentence = sentence.casefold()
+#     sentence = list(sentence)
+#     for p in range(len(sentence)):
+#         if sentence[p - 1] == ' ':
+#             continue
+#         else:
+#             sentence[p - 1] = alphabetsoup[alphabetsoup.index(sentence[p - 1]) + offset]
+#     for y in range(len(sentence)):
+#         realwords += sentence[y - 1]
+#     realwords = list(realwords)
+#     letter = realwords.pop(0)
+#     realwords.append(letter)
+#     str1 = ""
+#     return str1.join(realwords)
 def cypher(sentence, offset):
-    while offset > 26:
-        offset -= 26
     alphabetsoup = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
                     "u", "v", "w", "x", "y", "z"]
-    realwords = ""
     sentence = sentence.casefold()
     sentence = list(sentence)
     for p in range(len(sentence)):
-        if sentence[p - 1] == ' ':
+        if sentence[p] == ' ':
             continue
         else:
-            sentence[p - 1] = alphabetsoup[alphabetsoup.index(sentence[p - 1]) + offset]
-    for y in range(len(sentence)):
-        realwords += sentence[y - 1]
-    realwords = list(realwords)
-    letter = realwords.pop(0)
-    realwords.append(letter)
+            while alphabetsoup.index(sentence[p +1]) + offset > 26:
+                offset -= 26
+            sentence[p] = alphabetsoup[alphabetsoup.index(sentence[p]) + offset]
     str1 = ""
-    return str1.join(realwords)
+    return str1.join(sentence)
 
 
 def decryptknown(sentence, offset):
@@ -52,14 +66,14 @@ def decrypt(sentence):
     sentence = sentence.casefold()
     sentence = list(sentence)
     listofsentences = []
-    for x in range(26):
+    for l in range(26):
         realwords = ""
-        offset = x
-        for x in range(len(sentence)):
-            if sentence[x - 1] == ' ':
-                continue
+        offset = l
+        for ex in range(len(sentence)):
+            if sentence[ex - 1] != ' ':
+                sentence[ex - 1] = alphabetsoup[alphabetsoup.index(sentence[ex - 1]) - offset]
             else:
-                sentence[x - 1] = alphabetsoup[alphabetsoup.index(sentence[x - 1]) - offset]
+                continue
         for y in range(len(sentence)):
             realwords += sentence[y - 1]
         realwords = list(realwords)
