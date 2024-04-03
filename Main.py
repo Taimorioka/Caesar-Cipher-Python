@@ -1,24 +1,6 @@
-# def cypher(sentence, offset):
-#     while offset > 26:
-#         offset -= 26
-#     alphabetsoup = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-#                     "u", "v", "w", "x", "y", "z"]
-#     realwords = ""
-#     sentence = sentence.casefold()
-#     sentence = list(sentence)
-#     for p in range(len(sentence)):
-#         if sentence[p - 1] == ' ':
-#             continue
-#         else:
-#             sentence[p - 1] = alphabetsoup[alphabetsoup.index(sentence[p - 1]) + offset]
-#     for y in range(len(sentence)):
-#         realwords += sentence[y - 1]
-#     realwords = list(realwords)
-#     letter = realwords.pop(0)
-#     realwords.append(letter)
-#     str1 = ""
-#     return str1.join(realwords)
 def cypher(sentence, offset):
+    while offset > 26:
+        offset -= 26
     alphabetsoup = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
                     "u", "v", "w", "x", "y", "z"]
     sentence = sentence.casefold()
@@ -27,8 +9,6 @@ def cypher(sentence, offset):
         if sentence[p] == ' ':
             continue
         else:
-            while alphabetsoup.index(sentence[p +1]) + offset > 26:
-                offset -= 26
             sentence[p] = alphabetsoup[alphabetsoup.index(sentence[p]) + offset]
     str1 = ""
     return str1.join(sentence)
@@ -58,11 +38,8 @@ def decryptknown(sentence, offset):
 
 def decrypt(sentence):
     offset = 0
-    while offset > 26:
-        offset -= 26
     alphabetsoup = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
                     "u", "v", "w", "x", "y", "z"]
-
     sentence = sentence.casefold()
     sentence = list(sentence)
     listofsentences = []
@@ -70,8 +47,8 @@ def decrypt(sentence):
         realwords = ""
         offset = l
         for ex in range(len(sentence)):
-            if sentence[ex - 1] != ' ':
-                sentence[ex - 1] = alphabetsoup[alphabetsoup.index(sentence[ex - 1]) - offset]
+            if sentence[ex] != ' ':
+                sentence[ex] = alphabetsoup[alphabetsoup.index(sentence[ex]) - offset]
             else:
                 continue
         for y in range(len(sentence)):
@@ -100,7 +77,5 @@ while True:
             print(words)
         else:
             words = decrypt(texts)
-            for x in range(26):
-                print(x)
     else:
         print("Unrecognised input")
