@@ -2,6 +2,8 @@ def cypher(sentence, offset):
     while offset > 26:
         offset -= 26
     alphabetsoup = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
+                    "u", "v", "w", "x", "y", "z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+                    "o", "p", "q", "r", "s", "t",
                     "u", "v", "w", "x", "y", "z"]
     sentence = sentence.casefold()
     sentence = list(sentence)
@@ -18,6 +20,8 @@ def decryptknown(sentence, offset):
     while offset > 26:
         offset -= 26
     alphabetsoup = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
+                    "u", "v", "w", "x", "y", "z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+                    "o", "p", "q", "r", "s", "t",
                     "u", "v", "w", "x", "y", "z"]
     realwords = ""
     sentence = sentence.casefold()
@@ -37,29 +41,21 @@ def decryptknown(sentence, offset):
 
 
 def decrypt(sentence):
-    offset = 0
     alphabetsoup = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
+                    "u", "v", "w", "x", "y", "z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+                    "o", "p", "q", "r", "s", "t",
                     "u", "v", "w", "x", "y", "z"]
     sentence = sentence.casefold()
     sentence = list(sentence)
-    listofsentences = []
-    for l in range(26):
-        realwords = ""
-        offset = l
-        for ex in range(len(sentence)):
-            if sentence[ex] != ' ':
-                sentence[ex] = alphabetsoup[alphabetsoup.index(sentence[ex]) - offset]
-            else:
+    for x in range(26):
+        offset = x
+        for p in range(len(sentence)):
+            if sentence[p] == ' ':
                 continue
-        for y in range(len(sentence)):
-            realwords += sentence[y - 1]
-        realwords = list(realwords)
-        letter = realwords.pop(0)
-        realwords.append(letter)
+            else:
+                sentence[p] = alphabetsoup[alphabetsoup.index(sentence[p]) + offset]
         str1 = ""
-        print(str1.join(realwords))
-        listofsentences.append(str1.join(realwords))
-    return listofsentences
+        print("offset = {}, {}".format(x + 1, str1.join(sentence)))
 
 
 while True:
