@@ -58,6 +58,37 @@ def decrypt(sentence):
         print("offset = {}, {}".format(x + 1, str1.join(sentence)))
 
 
+def decryptadvanced(sentence):
+    alphabetsoup = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
+                    "u", "v", "w", "x", "y", "z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+                    "o", "p", "q", "r", "s", "t",
+                    "u", "v", "w", "x", "y", "z"]
+    goodwords = ['the', 'by']
+    listofsplitsentences = []
+    str1 = ""
+    sentence = sentence.casefold()
+    sentence = list(sentence)
+    for y in range(26):
+        offset = y
+        for q in range(len(sentence)):
+            if sentence[q] == ' ':
+                continue
+            else:
+                sentence[q] = alphabetsoup[alphabetsoup.index(sentence[q]) + offset]
+        str1 = ""
+        # print("offset = {}, {}".format(x + 1, str1.join(sentence)))
+        var2 = str1.join(sentence)
+        var2 = var2.split()
+        listofsplitsentences.append(var2)
+    # print(listofsplitsentences)
+    for r in range(len(listofsplitsentences)):
+        for h in range(len(listofsplitsentences[r])):
+            if listofsplitsentences[r][h] in goodwords:
+                listofsplitsentences[r] = ['{} '.format(elem) for elem in listofsplitsentences[r]]
+                print(str1.join(listofsplitsentences[r]))
+
+
+
 while True:
     encode = input("Do you want to encode or decode? ")
     if encode == "encode":
@@ -72,6 +103,10 @@ while True:
             words = decryptknown(texts, off)
             print(words)
         else:
-            words = decrypt(texts)
+            yes = input("do you want to use advanced search? ")
+            if yes == 'yes':
+                decryptadvanced(texts)
+            else:
+                decrypt(texts)
     else:
         print("Unrecognised input")
