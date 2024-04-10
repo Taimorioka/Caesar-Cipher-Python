@@ -60,23 +60,25 @@ def decrypt(sentence):
 
 def decryptadvanced(sentence):
     alphabetsoup = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-                    "u", "v", "w", "x", "y", "z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
-                    "o", "p", "q", "r", "s", "t",
                     "u", "v", "w", "x", "y", "z"]
-    goodwords = ['the', 'by']
+    goodwords = ['the', 'be', 'to', 'of', 'and', 'in', 'that', 'have', 'it', 'for', 'not', 'on', 'with', 'he',
+                 'as', 'you', 'do']
     listofsplitsentences = []
+    listofnonsplitsentences = []
     str1 = ""
+    printed = False
     sentence = sentence.casefold()
     sentence = list(sentence)
-    for y in range(26):
-        offset = y
+    for offset in range(26):
         for q in range(len(sentence)):
+            while alphabetsoup.index(sentence[q]) + offset >= 26:
+                sentence[q] = alphabetsoup[alphabetsoup.index(sentence[q]) - 26]
             if sentence[q] == ' ':
                 continue
             else:
                 sentence[q] = alphabetsoup[alphabetsoup.index(sentence[q]) + offset]
         str1 = ""
-        # print("offset = {}, {}".format(x + 1, str1.join(sentence)))
+        listofnonsplitsentences.append("offset = {}, {}".format(offset, str1.join(sentence)))
         var2 = str1.join(sentence)
         var2 = var2.split()
         listofsplitsentences.append(var2)
@@ -86,7 +88,10 @@ def decryptadvanced(sentence):
             if listofsplitsentences[r][h] in goodwords:
                 listofsplitsentences[r] = ['{} '.format(elem) for elem in listofsplitsentences[r]]
                 print(str1.join(listofsplitsentences[r]))
-
+                printed = True
+    if not printed:
+        for repeat in range(len(listofnonsplitsentences)):
+            print(listofnonsplitsentences[repeat])
 
 
 while True:
