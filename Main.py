@@ -75,6 +75,7 @@ def decryptadvanced(sentence):
                 continue
             else:
                 print(alphabetsoup.index(sentence[q]))
+
                 sentence[q] = alphabetsoup[alphabetsoup.index(sentence[q]) + offset]
         str1 = ""
         listofnonsplitsentences.append("offset = {}, {}".format(offset, str1.join(sentence)))
