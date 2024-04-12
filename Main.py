@@ -60,7 +60,7 @@ def decrypt(sentence):
 
 def decryptadvanced(sentence):
     alphabetsoup = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-                    "u", "v", "w", "x", "y", "z"]
+                    "u", "v", "w", "x", "y", "z", ]
     goodwords = ['the', 'be', 'to', 'of', 'and', 'in', 'that', 'have', 'it', 'for', 'not', 'on', 'with', 'he',
                  'as', 'you', 'do']
     listofsplitsentences = []
@@ -74,8 +74,7 @@ def decryptadvanced(sentence):
             if sentence[q] == ' ':
                 continue
             else:
-                # while alphabetsoup.index('{}'.format(sentence[q])) + offset >= 26:
-                #     sentence[q] = alphabetsoup[alphabetsoup.index(sentence[q]) - 26]
+                print(alphabetsoup.index(sentence[q]))
                 sentence[q] = alphabetsoup[alphabetsoup.index(sentence[q]) + offset]
         str1 = ""
         listofnonsplitsentences.append("offset = {}, {}".format(offset, str1.join(sentence)))
