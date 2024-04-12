@@ -71,11 +71,11 @@ def decryptadvanced(sentence):
     sentence = list(sentence)
     for offset in range(26):
         for q in range(len(sentence)):
-            while alphabetsoup.index(sentence[q]) + offset >= 26:
-                sentence[q] = alphabetsoup[alphabetsoup.index(sentence[q]) - 26]
             if sentence[q] == ' ':
                 continue
             else:
+                # while alphabetsoup.index('{}'.format(sentence[q])) + offset >= 26:
+                #     sentence[q] = alphabetsoup[alphabetsoup.index(sentence[q]) - 26]
                 sentence[q] = alphabetsoup[alphabetsoup.index(sentence[q]) + offset]
         str1 = ""
         listofnonsplitsentences.append("offset = {}, {}".format(offset, str1.join(sentence)))
