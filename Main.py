@@ -46,16 +46,17 @@ def decrypt(sentence):
                     "o", "p", "q", "r", "s", "t",
                     "u", "v", "w", "x", "y", "z"]
     sentence = sentence.casefold()
-    sentence = list(sentence)
     for x in range(26):
+        changing_sentence = sentence
+        changing_sentence = list(changing_sentence)
         offset = x
-        for p in range(len(sentence)):
-            if sentence[p] == ' ':
+        for p in range(len(changing_sentence)):
+            if changing_sentence[p] == ' ':
                 continue
             else:
-                sentence[p] = alphabetsoup[alphabetsoup.index(sentence[p]) + offset]
+                changing_sentence[p] = alphabetsoup[alphabetsoup.index(changing_sentence[p]) + offset]
         str1 = ""
-        print("offset = {}, {}".format(x + 1, str1.join(sentence)))
+        print("offset = {}, {}".format(x + 1, str1.join(changing_sentence)))
 
 
 def decryptadvanced(sentence):
