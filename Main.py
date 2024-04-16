@@ -60,7 +60,7 @@ def decrypt(sentence):
 
 def decryptadvanced(sentence):
     alphabetsoup = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-                    "u", "v", "w", "x", "y", "z", ]
+                    "u", "v", "w", "x", "y", "z"]
     goodwords = ['the', 'be', 'to', 'of', 'and', 'in', 'that', 'have', 'it', 'for', 'not', 'on', 'with', 'he',
                  'as', 'you', 'do']
     listofsplitsentences = []
@@ -68,21 +68,24 @@ def decryptadvanced(sentence):
     str1 = ""
     printed = False
     sentence = sentence.casefold()
-    sentence = list(sentence)
     for offset in range(26):
-        for q in range(len(sentence)):
-            if sentence[q] == ' ':
-                continue
-            else:
-                print(alphabetsoup.index(sentence[q]))
-
-                sentence[q] = alphabetsoup[alphabetsoup.index(sentence[q]) + offset]
+        changing_sentence = sentence
+        changing_sentence = list(changing_sentence)
+        for q in range(len(changing_sentence)):
+            changed_amount = 0
+            if changing_sentence[q] != ' ':
+                while alphabetsoup.index(changing_sentence[q]) + offset >= 26:
+                    offset -= 26
+                    changed_amount += 1
+                changing_sentence[q] = alphabetsoup[alphabetsoup.index(changing_sentence[q]) + offset]
+                for u in range(changed_amount):
+                    offset += 26
+            print(sentence)
         str1 = ""
-        listofnonsplitsentences.append("offset = {}, {}".format(offset, str1.join(sentence)))
-        var2 = str1.join(sentence)
+        listofnonsplitsentences.append("offset = {}, {}".format(offset, str1.join(changing_sentence)))
+        var2 = str1.join(changing_sentence)
         var2 = var2.split()
         listofsplitsentences.append(var2)
-    # print(listofsplitsentences)
     for r in range(len(listofsplitsentences)):
         for h in range(len(listofsplitsentences[r])):
             if listofsplitsentences[r][h] in goodwords:
