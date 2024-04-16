@@ -9,4 +9,4 @@ for x in range(ranges):
     if x % 5 == 0:
         divisable3.append(x)
 summ = sum(divisable3) + sum(divisable5)
-print("The sum of all numbers equal to or under {} is {}".format(ranges, summ))
+print("The sum of all numbers equal to or under {} that rae multiples of 5 or 3 is {}".format(ranges, summ))
